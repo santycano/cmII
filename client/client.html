@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Multimaze</title>
+        <!-- Dependencies -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="controller.js"></script>
+        <script src="seedrandom.js"></script>
+
+        <!-- Local scripts -->
+        <script src="maze.js"></script>
+        <script src="userinput.js"></script>
+        <script src="app.js"></script>
+        <script src="chat.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" />
+        <link rel="stylesheet" href="res/general.css" />
+        <link rel="stylesheet" href="res/chat.css" />
+        <link rel="stylesheet" href="res/maze.css" />
+        <link rel="stylesheet" href="res/roomSelection.css" />
+        <link rel="stylesheet" href="res/loading.css" />
+        <link rel="stylesheet" href="res/waiting.css" />
+        <link rel="stylesheet" href="res/main.css" />
+
+        <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+    </head>
+
+    <body ng-app="multimaze">
+        <div id="overlay" ng-controller="customRoomController as roomCtrl">
+            <div id="ui" class="hoverbox">
+                <h3>Multimaze</h3>
+                <form name="customRoom" ng-submit="customRoom.$valid && roomCtrl.join()" novalidate>
+                    <div id="user-data">
+                        <input type="text" ng-model="roomCtrl.request.username" placeholder="Username" maxlength="10" input-restricted/>
+                        <input type="text" ng-model="roomCtrl.request.id" placeholder="Optional room ID" maxlength="10" input-restricted/>
+                    </div>
+                    <div id="diff">
+                        <input type="radio" id="diff-easy" class="form-button" ng-model="roomCtrl.request.diff" value="easy" />
+                        <label for="diff-easy">Easy</label>
+                        <input type="radio" id="diff-med" class="form-button" ng-model="roomCtrl.request.diff" value="medium" />
+                        <label for="diff-med">Medium</label>
+                        <input type="radio" id="diff-hard" class="form-button" ng-model="roomCtrl.request.diff" value="hard" />
+                        <label for="diff-hard">Hard</label>
+                    </div>
+                    <input type="submit" id="button-submit" ng-disabled="customRoom.$invalid" value="Play" />
+                </form>
+            </div>
+
+            <div id="intro" class="hoverbox">
+                <h4>What is Multimaze?</h4>
+                <p>
+                    Multimaze is a small project designed to utilize <a href="https://angularjs.org/">AngularJS</a> and <a href="https://nodejs.org/en/">Node.js</a> to create a real-time competitive game to solve mazes faster than an opponent. The source code can by found on <a href="https://github.com/edward-shen/multimaze">Github</a>.
+                </p>
+            </div>
+
+            <div class="hoverbox" id="loader">
+                <div>
+                    <div id="loaderTop"></div>
+                    <div id="loaderBottom"></div>
+                    <div id="loaderLine"></div>
+                </div>
+                <h3>Loading...</h3>
+            </div>
+        </div>
+
+        <div id="main">
+            <div id="left">
+                <div id="waiting">
+                    <h3>Waiting for an opponent...</h3>
+                </div>
+            </div>
+            <div id="chat" ng-controller="chatController as chatCtrl">
+                <div id="room-info">
+                    <p id="room-id"></p>
+                    <p id="room-username"></p>
+                    <p id="room-score"></p>
+                    <p id="room-diff"></p>
+                </div>
+                <div id="chatlog">
+                </div>
+                <form name="chatform" ng-submit="chatform.$valid && chatCtrl.sendMessage()" novalidate>
+                    <span>
+                        <input type="text" ng-model="chatCtrl.msg" placeholder="Enter message here..." maxlength="200" required/>
+                    </span>
+                    <input type="submit" value="Send" />
+                </form>
+            </div>
+        </div>
+
+    </body>
+
+</html>

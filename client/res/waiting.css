@@ -1,0 +1,15 @@
+#waiting {
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    text-align: center;
+    display: none;
+    animation: waiting-animation 3s ease-in-out infinite;
+    animation-direction: alternate;
+}
+
+@keyframes waiting-animation {
+    0%   { opacity: 1; }
+    60%  { opacity: 1; }
+    100% { opacity: 0; }
+}

@@ -1,0 +1,134 @@
+
+#overlay {
+    z-index: 200;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51, 51, 51, 0.5);
+	display: -webkit-flex;
+	display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#diff {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-around;
+}
+
+#ui {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    max-width: 20vw;
+    min-width: 210px;
+    padding: 18px 18px;
+}
+
+#ui * {
+    margin: 2px 2px;
+}
+
+#ui h3 {
+    margin-bottom: 10px;
+}
+
+#ui i {
+    font-size: small;
+}
+
+#user-data {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#user-data input {
+    padding: 2px 5px;
+}
+
+#button-submit {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    width: 100%;
+    background-color: #66BB6A;
+    color: #000;
+}
+
+#button-submit:enabled {
+}
+
+.form-button {
+    display: none;
+}
+
+.form-button + label {
+    border: 2px white solid;
+    border-radius: 4px;
+    margin: 10px 0;
+    padding: 5px 5px;
+    -webkit-transition: border 250ms ease-out,
+        background-color 250ms ease-out;
+    -moz-transition: border 250ms ease-out,
+        background-color 250ms ease-out;
+    -o-transition: border 250ms ease-out,
+        background-color 250ms ease-out;
+    transition: border 250ms ease-out,
+        background-color 250ms ease-out;
+}
+
+#diff-hard:checked + label {
+    border: 2px #E57373 solid;
+    background-color: #EF5350;
+}
+
+#diff-med:checked + label {
+    border: 2px #A5D6A7 solid;
+    background-color: #66BB6A;
+}
+
+#diff-easy:checked + label {
+    border: 2px #64B5F6 solid;
+    background-color: #42A5F5;
+}
+
+#diff-hard + label:hover {
+    background-color: #E57373;
+}
+
+#diff-med + label:hover {
+    background-color: #A5D6A7;
+}
+
+#diff-easy + label:hover {
+    background-color: #64B5F6;
+}
+
+#intro {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    max-width: 15vw;
+    min-width: 225px;
+    max-height: 175px;
+    min-height: 175px;
+    overflow-y: hidden;
+}
+
+.hoverbox{
+    background-color: white;
+    padding: 20px 20px;
+    border-radius: 8px;
+}
