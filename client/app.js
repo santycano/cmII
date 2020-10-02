@@ -49,7 +49,7 @@
 
         this.join = function() {
             if (this.request.username === '' || typeof this.request.username === 'undefined') {
-                this.request.username = "Anonymous";
+                this.request.username = "Usuario";
             }
 
             $("#ui").hide();

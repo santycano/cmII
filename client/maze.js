@@ -134,7 +134,7 @@ function moveUser(location) {
     curPos.y = location.y;
     drawUser();
     if (checkFinish()){
-        socket.emit("chatMsg", {user: "Server", msg: username + " has reached the end!"});
+        socket.emit("chatMsg", {user: "Servidor", msg: username + " ha ganado un punto"});
         socket.emit("getNewMap", username);
     }
 }

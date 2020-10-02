@@ -30,7 +30,7 @@ socket.on('roomData', function(msg) {
             xSize = 20;
             break;
         case "hard":
-            ySize = 25;
+            ySize = 20;
             xSize = 35;
             break;
         default:

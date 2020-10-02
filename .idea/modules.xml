@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/multimaze.iml" filepath="$PROJECT_DIR$/.idea/multimaze.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Laberinto.iml" filepath="$PROJECT_DIR$/.idea/Laberinto.iml" />
     </modules>
   </component>
 </project>

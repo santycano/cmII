@@ -31,8 +31,8 @@ function incrementAndUpdateScore(user) {
 function addRoomInfo(id) {
     if (typeof roomID === 'undefined' && $("#room-id").is(":empty")) {
         roomID = id;
-        $("#room-id").append("<b>Room:</b> <i>" + roomID + "</i>");
-        $("#room-username").append("<b>User:</b> <i>" + username + "</i>");
-        $("#room-score").append("<b>Score:</b> <i id=\"user-score\">0</i><b> | </b><i id=\"opponent-score\">0</i>");
+        $("#room-id").append("<b>Sala:</b> <i>" + roomID + "</i>");
+        $("#room-username").append("<b>Usuario:</b> <i>" + username + "</i>");
+        $("#room-score").append("<b>Marcador:</b> <i id=\"user-score\">0</i><b> | </b><i id=\"opponent-score\">0</i>");
     }
 }

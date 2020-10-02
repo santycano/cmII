@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/../client'));
 
 app.get('/', function(req, res){
     console.log("SERVER LOG: REQUEST RECIEVED");
-    res.sendFile(path.resolve(__dirname + '/../client/client.html'));
+    res.sendFile(path.resolve(__dirname + '/../client/basePage.html'));
 });
 
 io.on('connection', function(socket){
