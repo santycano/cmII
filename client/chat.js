@@ -1,7 +1,6 @@
 var userScore = 0,
     opponentScore = 0;
 
-
 socket.on('chatMsg', function(msg) {
     if (msg.user === "Server"){
         $("#chatlog").append("<p class='sysMsg'><i><b>" + msg.user + ":</b> " + msg.msg + "</i></p>");

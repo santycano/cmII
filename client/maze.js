@@ -1,6 +1,6 @@
 // This file hosts all logic that has to do with the maze, from managing interal variables to displaying the maze
 
-var xSize, ySize, curPos, playingField, difficulty;
+var xSize, ySize, curPos, playingField;
 
 /* Yay helper functions (from StackOverflow).
  * Creates an n-dimensional array, with n equaling the number of parameters provided
@@ -23,15 +23,17 @@ function generateMaze() {
     var i; // Loop variable
     Math.seedrandom(randomSeed);
     var numNodes = ySize * xSize;
+    console.log(numNodes);
 
     var representativeArray = createArray(numNodes),
         edgeArray = createArray(2 * numNodes); // 2 * numNodes because at most each node will have 2 connections, one going right and one going down
-
+    console.log(edgeArray);
     // Initializes our representative array; their IDs are just arbitrary values
     for (i = 0; i < representativeArray.length; i++) {
         representativeArray[i] = i;
     }
-
+    console.log(representativeArray);
+    console.log(xSize);
     // Initalizes our edgeArray
     for (i = 0; i < edgeArray.length / 2; i++){
         // There's some confunkery occuring here. We define each edge as an object with a random weight, a starting position, and ending position.
@@ -49,7 +51,6 @@ function generateMaze() {
         }
     }
 
-
     // Sorts edges by their weight property, least to greatest
     edgeArray.sort(function(a, b) {
         return a.weight - b.weight;
@@ -64,13 +65,13 @@ function generateMaze() {
             // ... set all IDs with the same value to equal the value of the starting node, and thus creating a representative ID subgraph ...
             var representative = representativeArray[startPos];
             var toBeReplaced = representativeArray[endPos];
+
             if (representative !== toBeReplaced) {
                 for (i = 0; i < representativeArray.length; i++) {
                     if (representativeArray[i] === toBeReplaced) {
                         representativeArray[i] = representative;
                     }
                 }
-
                 drawField(); // ... draw the field...
             }
 
@@ -87,11 +88,13 @@ function generateMaze() {
             startPosY = startPos.y * 2 + 1,
             endPosX = endPos.x * 2 + 1;
             endPosY = endPos.y * 2 + 1;
-
+            playingFieldBefore = playingField;
             playingField[startPosY][startPosX] = 1; // Draws the box at the starting vertex
             playingField[(startPosY + endPosY) / 2][(startPosX + endPosX) / 2] = 1; // Draws the box at the middle position, the "edge"
             playingField[endPosY][endPosX] = 1; // Draws the box at the ending vertex
-        }
+            console.log(playingField == playingFieldBefore);
+
+    }
 
     // Sets the default position to (0, 0) and draws the user
     curPos = {x:0, y:0};
