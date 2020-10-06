@@ -1,7 +1,6 @@
 // This file hosts all logic that has to do with the maze, from managing interal variables to displaying the maze
 
 var xSize, ySize, curPos, playingField;
-
 /* Yay helper functions (from StackOverflow).
  * Creates an n-dimensional array, with n equaling the number of parameters provided
  * i.e. createArray(5) generates a 1D array with 5 elements, and createArray(5,3) creates a 2D array... etc. etc.
@@ -17,13 +16,16 @@ function createArray(length) {
 
     return arr;
 }
-
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 // This uses a modified Kruskal's algorithm to generate a random maze, with vertices in a unsigned rectangular system.
 function generateMaze() {
     var i; // Loop variable
     Math.seedrandom(randomSeed);
     var numNodes = ySize * xSize;
-    console.log(numNodes);
 
     var representativeArray = createArray(numNodes),
         edgeArray = createArray(2 * numNodes); // 2 * numNodes because at most each node will have 2 connections, one going right and one going down
@@ -32,8 +34,7 @@ function generateMaze() {
     for (i = 0; i < representativeArray.length; i++) {
         representativeArray[i] = i;
     }
-    console.log(representativeArray);
-    console.log(xSize);
+
     // Initalizes our edgeArray
     for (i = 0; i < edgeArray.length / 2; i++){
         // There's some confunkery occuring here. We define each edge as an object with a random weight, a starting position, and ending position.
@@ -92,32 +93,42 @@ function generateMaze() {
             playingField[startPosY][startPosX] = 1; // Draws the box at the starting vertex
             playingField[(startPosY + endPosY) / 2][(startPosX + endPosX) / 2] = 1; // Draws the box at the middle position, the "edge"
             playingField[endPosY][endPosX] = 1; // Draws the box at the ending vertex
-            console.log(playingField == playingFieldBefore);
-
     }
 
+    do{
+        yRand = getRandomInt(1,ySize);
+        xRand = getRandomInt(1,xSize);
+    }while (playingField[xRand-1][yRand-1] !== 1);
+
     // Sets the default position to (0, 0) and draws the user
-    curPos = {x:0, y:0};
+    curPos = {x:xRand, y:yRand};
+
 };
 
 // Writes the maze to the DOM, allowing us to visualize the output. Paths are black while the borders are grey
 function displayMaze() {
     var container = $("#left");
     container.append("<div id=\"playing-field\">");
+    do{
+        yRandf = getRandomInt(1,playingField.length-2);
+        xRandf = getRandomInt(1,playingField.length-2);
+    }while ( playingField[xRandf][yRandf] !== 1 && xRandf !== xRand && yRandf !== yRand);
 
     var field = $("#playing-field");
     for (i=0; i < playingField.length; i++) {
         field.append("<div id=\"row-" + i + "\">");
         var row = $("#row-" + i);
         for (j = 0; j < playingField[i].length; j++) {
-            if (i === playingField.length - 2 && j === playingField[0].length - 2){
+            /*if (i === playingField.length - 2 && j === playingField[0].length - 2){
                 row.append("<img src=\"img/goal.png\" />");
-            } else {
-                if (typeof playingField[i][j] !== 'undefined')
+            } else {*/
+                if (i === xRandf && yRandf === j)
+                    row.append("<img src=\"img/goal.png\" />");
+                else if (typeof playingField[i][j] !== 'undefined')
                     row.append("<img src=\"img/path.png\"/>");
                 else
                     row.append("<img src=\"img/wall.png\"/>");
-            }
+         //   }
         }
         row.append("<br/>");
         field.append("</div>");
@@ -162,7 +173,8 @@ function moveOpponent(msg) {
 
 // Checks if the user reaches the target position on the maze
 function checkFinish() {
-    return (curPos.x === (xSize - 1) * 2 && curPos.y === (ySize - 1) * 2)
+    //return (curPos.x === (xSize - 1) * 2 && curPos.y === (ySize - 1) * 2)
+    return (curPos.x === (yRandf - 1) && curPos.y === (xRandf - 1))
 }
 
 function generateNewMaze() {
@@ -171,6 +183,8 @@ function generateNewMaze() {
     displayMaze();
     addPlayers();
     resetPlayers();
+    drawUser();
+    moveOpponent(curPos);
 }
 
 // Clear the maze and recreates the internal playing field

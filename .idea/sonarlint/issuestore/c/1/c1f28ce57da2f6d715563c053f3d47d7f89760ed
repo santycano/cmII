@@ -1,7 +1,12 @@
 
-Qjavascript:S1117S"0'endPos' is already declared in the upper scope.(³¤ß¤ıÿÿÿÿ
-yjavascript:S2703Y"]Add the "let", "const" or "var" keyword to this declaration of "endPosY" to make it explicit.(ƒ†µ§
-7javascript:S1116b"Unnecessary semicolon.(ôŸìúÿÿÿÿ
-sjavascript:S2703j"WAdd the "let", "const" or "var" keyword to this declaration of "i" to make it explicit.(Õ‡ÍÎ
-sjavascript:S2703m"WAdd the "let", "const" or "var" keyword to this declaration of "j" to make it explicit.(Öˆ
-Sjavascript:S1117R"2'startPos' is already declared in the upper scope.(ªş¥•ÿÿÿÿÿ
+Xjavascript:S1117U"0'endPos' is already declared in the upper scope.(³¤ß¤ıÿÿÿÿ8„×ßßÎ.
+zjavascript:S2703v"WAdd the "let", "const" or "var" keyword to this declaration of "i" to make it explicit.(Õ‡ÍÎ8€¥ßÎ.
+€javascript:S2703["]Add the "let", "const" or "var" keyword to this declaration of "endPosY" to make it explicit.(ƒ†µ§8€¥ßÎ.
+javascript:S2703\"hAdd the "let", "const" or "var" keyword to this declaration of "playingFieldBefore" to make it explicit.(æëæøÿÿÿÿ8ø÷õßÎ.
+~javascript:S2703d"[Add the "let", "const" or "var" keyword to this declaration of "xRand" to make it explicit.(ûÓ¼İ8â¹¹©Ï.
+Zjavascript:S1117T"2'startPos' is already declared in the upper scope.(ªş¥•ÿÿÿÿÿ8œŠ»ÙÎ.
+>javascript:S1116j"Unnecessary semicolon.(ôŸìúÿÿÿÿ8¨€â¨Ï.
+javascript:S2703r"\Add the "let", "const" or "var" keyword to this declaration of "xRandf" to make it explicit.(´êù8¤­¼©Ï.
+javascript:S2703q"\Add the "let", "const" or "var" keyword to this declaration of "yRandf" to make it explicit.(¡²Ö³8¤­¼©Ï.
+~javascript:S2703c"[Add the "let", "const" or "var" keyword to this declaration of "yRand" to make it explicit.(£§¸’8â¹¹©Ï.
+zjavascript:S2703y"WAdd the "let", "const" or "var" keyword to this declaration of "j" to make it explicit.(Öˆ8¨€â¨Ï.

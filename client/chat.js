@@ -15,8 +15,6 @@ function updateScroll() {
 }
 
 function incrementAndUpdateScore(user) {
-    console.log(user);
-    console.log(username);
     if (checkFinish()) {
         userScore++;
     } else {

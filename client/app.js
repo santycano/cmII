@@ -45,7 +45,7 @@
     });
 
     app.controller("customRoomController", function() {
-        this.request = { diff:"medium" }; // Initializes our difficulty as medium
+        this.request = { diff:"easy" }; // Initializes our difficulty as medium
 
         this.join = function() {
             if (this.request.username === '' || typeof this.request.username === 'undefined') {

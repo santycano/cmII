@@ -3,7 +3,6 @@
 #loader {
     display:none;
 }
-
 #loader > div {
     animation: loader 5s cubic-bezier(.8,0,.2,1) infinite;
     height: 40px;

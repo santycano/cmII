@@ -27,7 +27,8 @@
     -o-user-select: none;
     user-select: none;
     max-width: 20vw;
-    min-width: 210px;
+    min-width: 400px;
+    min-height: 40vw;
     padding: 18px 18px;
 }
 
