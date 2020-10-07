@@ -7,25 +7,25 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
-        <script src="controller.js"></script>
-        <script src="seedrandom.js"></script>
+        <script src="../maze/controller.js"></script>
+        <script src="../maze/seedrandom.js"></script>
 
         <!-- Local scripts -->
-        <script src="maze.js"></script>
-        <script src="userinput.js"></script>
-        <script src="app.js"></script>
-        <script src="chat.js"></script>
+        <script src="../maze/maze.js"></script>
+        <script src="../maze/userInput.js"></script>
+        <script src="../app.js"></script>
+        <script src="../maze/chat.js"></script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" />
-        <link rel="stylesheet" href="css/general.css" />
-        <link rel="stylesheet" href="css/chat.css" />
-        <link rel="stylesheet" href="css/maze.css" />
-        <link rel="stylesheet" href="css/roomSelection.css" />
-        <link rel="stylesheet" href="css/loading.css" />
-        <link rel="stylesheet" href="css/waiting.css" />
-        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="../css/general.css" />
+        <link rel="stylesheet" href="../css/chat.css" />
+        <link rel="stylesheet" href="../css/maze.css" />
+        <link rel="stylesheet" href="../css/roomSelection.css" />
+        <link rel="stylesheet" href="../css/loading.css" />
+        <link rel="stylesheet" href="../css/waiting.css" />
+        <link rel="stylesheet" href="../css/main.css" />
 
-        <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+        <link href="../img/favicon.ico" rel="icon" type="image/x-icon" />
     </head>
 
     <body ng-app="multimaze">
@@ -45,7 +45,18 @@
                         <input type="radio" id="diff-hard" class="form-button" ng-model="roomCtrl.request.diff" value="hard" />
                         <label for="diff-hard">Dificil</label>
                     </div>
-                    <input type="submit" id="button-submit" ng-disabled="customRoom.$invalid" value="Jugar" />
+                    <h3>Seleccione su color</h3>
+                    <div id="img-selection">
+                        <div id="left1"></div>
+                        <input type="radio" id="user-0" class="form-button" ng-model="roomCtrl.request.userimg" value="user" />
+                        <label for="user-0"><img src="../img/user.png"></label>
+                        <input type="radio" id="user-1" class="form-button" ng-model="roomCtrl.request.userimg" value="user1" />
+                        <label for="user-1"><img src="../img/user1.png"></label>
+                    </div>
+                    <div>
+                        <h3></h3>
+                        <input type="submit" id="button-submit" ng-disabled="customRoom.$invalid" value="Jugar" />
+                    </div>
                 </form>
             </div>
 

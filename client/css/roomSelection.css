@@ -28,7 +28,7 @@
     user-select: none;
     max-width: 20vw;
     min-width: 400px;
-    min-height: 40vw;
+    min-height: 10vw;
     padding: 18px 18px;
 }
 
@@ -115,6 +115,29 @@
 
 #diff-easy + label:hover {
     background-color: #64B5F6;
+}
+
+#left1 {
+    float:left;
+    width:150px;
+}
+
+#user-0:checked + label {
+    border: 2px #E57373 solid;
+    background-color: #EF5350;
+}
+
+#user-0 + label:hover {
+    background-color: #E57373;
+}
+
+#user-1:checked + label {
+    border: 2px #E57373 solid;
+    background-color: #EF5350;
+}
+
+#user-1 + label:hover {
+    background-color: #E57373;
 }
 
 #intro {

@@ -3,13 +3,14 @@ var app = express();
 var http = require('http').Server(app);
 var path = require('path');
 var io = require('socket.io')(http, {'pingTimeout': 10000});
+var users = [];
 
 // Sends over our resources
 app.use(express.static(__dirname + '/../client'));
 
 app.get('/', function(req, res){
     console.log("SERVER LOG: REQUEST RECIEVED");
-    res.sendFile(path.resolve(__dirname + '/../client/basePage.html'));
+    res.sendFile(path.resolve(__dirname + '/../client/views/basePage.html'));
 });
 
 io.on('connection', function(socket){
@@ -17,11 +18,10 @@ io.on('connection', function(socket){
 
     // Opponent movement listener
     socket.on('userMovement', function(msg){
-        // TODO: implement movement verification
         socket.to(roomID).emit('userMovement', msg);
     });
 
-    // Chat system!
+    // Chat
     socket.on('chatMsg', function(msg){
         io.in(roomID).emit('chatMsg', msg);
     });
@@ -38,30 +38,40 @@ io.on('connection', function(socket){
 
     // Adds the user to a room
     socket.on('ready', function(msg, callback) {
+        var firstUser = '';
+
         // If the room is full, don't join the room
         join: {
-            if (typeof msg.id !== 'undefined') { // If an ID was specified
-                if (typeof io.sockets.adapter.rooms[msg.id] !== 'undefined' &&
-                    (io.sockets.adapter.rooms[msg.id].length == 2)) {
+            if (typeof msg.id !== 'undefined') {
+                // If an ID was specified
+                if (typeof io.sockets.adapter.rooms[msg.id] !== 'undefined' && (io.sockets.adapter.rooms[msg.id].length == 2)) {
                         callback("full");
                         break join;
-                } else { // If the room doesn't exist
+                } else {
+                    // If the room doesn't exist
                     roomID = msg.id;
                     socket.join(roomID);
+                    if (typeof firstUser === 'undefined')
+                        firstUser = msg.userimg;
                     if (typeof io.sockets.adapter.rooms[roomID].diff === 'undefined')
                         io.sockets.adapter.rooms[roomID].diff = msg.diff;
                 }
-            } else { // If an ID wasn't specified
+            } else {
+                // If an ID wasn't specified
                 while (typeof io.sockets.adapter.rooms[roomID.toString()] !== 'undefined' && (io.sockets.adapter.rooms[roomID.toString()].length >= 2 || io.sockets.adapter.rooms[roomID.toString()].diff !== msg.diff))
                     roomID++;
-                roomID = roomID.toString(); // Changes our variable to a String, so we don't need to convert it to a string every time
+                roomID = roomID.toString();
+                // Changes our variable to a String, so we don't need to convert it to a string every time
                 socket.join(roomID);
                 io.sockets.adapter.rooms[roomID].diff = msg.diff;
             }
 
             callback("ok");
 
-            io.in(roomID.toString()).emit('roomData', {id: roomID, diff: msg.diff} );
+            users.push([io.sockets.adapter.rooms[roomID].diff,msg.username,roomID]);
+            io.sockets.emit('update', users);
+
+            io.in(roomID.toString()).emit('roomData', {id: roomID, diff: msg.diff, userimg0: firstUser, userimg1: msg.userimg, user:users} );
 
             console.log('USER[' + socket.conn.remoteAddress + '] ACTION: JOIN=>ROOM[' + roomID + ']');
 
@@ -70,8 +80,18 @@ io.on('connection', function(socket){
                 io.in(roomID.toString()).emit('startData', Math.random().toString());
                 console.log("SERVER ACTION: ANNOUNCE DATA TO ROOM[" + roomID + "]");
                 console.log("DEBUG: ROOM: " + JSON.stringify(io.sockets.adapter.rooms[roomID]));
+
             }
         }
+    });
+
+    socket.on('update', function () {
+        users[user] = user;
+        console.log('Current users: ', users);
+    });
+
+    socket.on('get', function () {
+        io.in(roomID.toString()).emit('roomData', {user:users} );
     });
 
     socket.on('getNewMap', function(msg) {

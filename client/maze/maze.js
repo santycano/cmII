@@ -1,6 +1,6 @@
 // This file hosts all logic that has to do with the maze, from managing interal variables to displaying the maze
 
-var xSize, ySize, curPos, playingField;
+var xSize, ySize, curPos, playingField,userLogo;
 /* Yay helper functions (from StackOverflow).
  * Creates an n-dimensional array, with n equaling the number of parameters provided
  * i.e. createArray(5) generates a 1D array with 5 elements, and createArray(5,3) creates a 2D array... etc. etc.
@@ -29,7 +29,6 @@ function generateMaze() {
 
     var representativeArray = createArray(numNodes),
         edgeArray = createArray(2 * numNodes); // 2 * numNodes because at most each node will have 2 connections, one going right and one going down
-    console.log(edgeArray);
     // Initializes our representative array; their IDs are just arbitrary values
     for (i = 0; i < representativeArray.length; i++) {
         representativeArray[i] = i;
@@ -123,11 +122,11 @@ function displayMaze() {
                 row.append("<img src=\"img/goal.png\" />");
             } else {*/
                 if (i === xRandf && yRandf === j)
-                    row.append("<img src=\"img/goal.png\" />");
+                    row.append("<img src=\"../img/goal.png\" />");
                 else if (typeof playingField[i][j] !== 'undefined')
-                    row.append("<img src=\"img/path.png\"/>");
+                    row.append("<img src=\"../img/path.png\"/>");
                 else
-                    row.append("<img src=\"img/wall.png\"/>");
+                    row.append("<img src=\"../img/wall.png\"/>");
          //   }
         }
         row.append("<br/>");
@@ -195,8 +194,8 @@ function clearMaze() {
 }
 
 function addPlayers(){
-    $("#playing-field").append("<img src=\"img/opponent.png\" id=\"opponent\" />");
-    $("#playing-field").append("<img src=\"img/user.png\" id=\"user\" />");
+    $("#playing-field").append("<img src=\"../img/opponent.png\" id=\"opponent\" />");
+    $("#playing-field").append(userLogo);
 }
 
 function resetPlayers() {

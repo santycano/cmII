@@ -45,7 +45,7 @@
     });
 
     app.controller("customRoomController", function() {
-        this.request = { diff:"easy" }; // Initializes our difficulty as medium
+        this.request = { diff:"easy" , userimg:"user" }; // Initializes our difficulty as medium
 
         this.join = function() {
             if (this.request.username === '' || typeof this.request.username === 'undefined') {
@@ -54,8 +54,9 @@
 
             $("#ui").hide();
             $("#loader").show();
-            
+
             username = this.request.username;
+
             socket.emit('ready', this.request, function(resp) {
                 if (resp === "full") {
                     alert("that room is full!");
