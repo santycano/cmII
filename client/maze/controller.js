@@ -1,9 +1,6 @@
-// This file hosts the code that is appliciable to the function of the app itself, rather than any specific module
-
 var socket = io({'sync disconnect on unload': true });
 var randomSeed, username, roomID, firstUser = 0;
 
-// Should be called after everything else is loaded
 socket.on('startData', function(msg) {
     $("#waiting").hide();
     randomSeed = msg;

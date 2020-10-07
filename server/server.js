@@ -85,20 +85,11 @@ io.on('connection', function(socket){
         }
     });
 
-    socket.on('update', function () {
-        users[user] = user;
-        console.log('Current users: ', users);
-    });
-
-    socket.on('get', function () {
-        io.in(roomID.toString()).emit('roomData', {user:users} );
-    });
-
     socket.on('getNewMap', function(msg) {
         io.in(roomID.toString()).emit('newMazeData', {seed: Math.random().toString(), username: msg});
     });
 });
 
 http.listen(process.env.PORT || 5000, function(){
-    console.log('listening on *:80');
+    console.log('listening on *:5000');
 });

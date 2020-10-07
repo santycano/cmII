@@ -1,16 +1,8 @@
-// This file hosts everything related to user (as well as opponent) input
-
-// Adds key listeners for the arrow keys
 function attachKeyListener() {
     document.onkeydown = function (e) {
         var code = e.keyCode ? e.keyCode : e.which;
         var movementData = curPos;
-        /* left = 37
-         * up = 38
-         * right = 39
-         * down = 40
-         * f12 = 123
-         */
+
         switch (code) {
             case 37:
                 if (checkLoc({y:curPos.y, x:curPos.x - 1})) {
@@ -57,7 +49,6 @@ socket.on('userMovement', function(msg){
     moveOpponent(msg);
 });
 
-// Prevents Inspection Menu
 $(document).keydown(function(event){
     if(event.keyCode==123){
     return false;
@@ -67,7 +58,6 @@ else if(event.ctrlKey && event.shiftKey && event.keyCode==73){
    }
 });
 
-// Disables context menu
 $(document).on("contextmenu",function(e){
    e.preventDefault();
 });
